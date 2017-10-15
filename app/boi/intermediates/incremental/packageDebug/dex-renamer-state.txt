@@ -1,0 +1,7 @@
+#Sat Oct 07 17:01:18 BST 2017
+base.0=C\:\\Users\\1dordj54\\Documents\\FindAPub\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run-bootstrap_197f0c471af3944f62558e42b70aab3d0b6d2b49
+renamed.1=classes2.dex
+renamed.0=classes.dex
+file.1=C\:\\Users\\1dordj54\\Documents\\FindAPub\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run_583687fc3530f3f21a1a62475998ee299b0272fb\\classes.dex
+base.1=C\:\\Users\\1dordj54\\Documents\\FindAPub\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run_583687fc3530f3f21a1a62475998ee299b0272fb
+file.0=C\:\\Users\\1dordj54\\Documents\\FindAPub\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run-bootstrap_197f0c471af3944f62558e42b70aab3d0b6d2b49\\classes.dex
