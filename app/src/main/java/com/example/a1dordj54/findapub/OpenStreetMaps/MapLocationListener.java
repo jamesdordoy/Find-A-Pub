@@ -1,4 +1,4 @@
-package com.example.a1dordj54.findapub.models.OpenStreetMaps;
+package com.example.a1dordj54.findapub.OpenStreetMaps;
 
 import android.content.Context;
 import android.content.pm.PackageManager;
@@ -7,7 +7,6 @@ import android.location.LocationManager;
 import android.location.Location;
 
 import android.location.LocationListener;
-import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -21,6 +20,8 @@ public class MapLocationListener implements LocationListener{
     private LocationManager locManager;
     private Context context;
     private Map map;
+
+    private Boolean mapLoaded = false;
 
     public MapLocationListener(LocationManager locManager, Context c, Map map){
         this.locManager = locManager;
@@ -65,7 +66,10 @@ public class MapLocationListener implements LocationListener{
     @Override
     public void onLocationChanged(Location newLoc) {
 
-        this.map.setView(new GeoPoint(newLoc.getLatitude(), newLoc.getLongitude()));
+        if(!this.mapLoaded)
+            this.map.setView(new GeoPoint(newLoc.getLatitude(), newLoc.getLongitude()));
+
+        this.mapLoaded = true;
     }
 
     @Override

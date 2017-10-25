@@ -22,7 +22,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL(PubsTable.SQL_DELETE);
+        db.execSQL(PubsTable.SQL_DROP);
         onCreate(db);
     }
 }

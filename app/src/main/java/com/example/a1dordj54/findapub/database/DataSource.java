@@ -44,7 +44,7 @@ public class DataSource {
     public ArrayList<Pub> getAllPubs(){
         ArrayList<Pub> pubs = new ArrayList<>();
 
-        Cursor cursor = this.database.query(PubsTable.TABLE_PUBS, PubsTable.AllCols, null, null, null, null, null);
+        Cursor cursor = this.database.query(PubsTable.TABLE_PUBS, PubsTable.ALL_COLS, null, null, null, null, null);
 
         while(cursor.moveToNext()){
             String id = cursor.getString(cursor.getColumnIndex(PubsTable.COLUMN_ID));

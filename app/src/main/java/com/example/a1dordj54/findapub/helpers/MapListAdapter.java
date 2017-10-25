@@ -1,4 +1,4 @@
-package com.example.a1dordj54.findapub.views;
+package com.example.a1dordj54.findapub.helpers;
 
 import android.content.Context;
 import android.database.DataSetObserver;
@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
+import android.widget.TextView;
 
 import com.example.a1dordj54.findapub.R;
 import com.example.a1dordj54.findapub.models.Pub;
@@ -44,17 +45,19 @@ public class MapListAdapter extends ArrayAdapter<Pub> implements ListAdapter {
             convertView = this.inflater.inflate(R.layout.list_item, parent, false);
         }
 
-        //TextView tvTitle = (TextView) convertView.findViewById(R.id.txtTitle);
+        TextView tvTitle = (TextView) convertView.findViewById(R.id.txtTitle);
 
-        //TextView tvDesc = (TextView) convertView.findViewById(R.id.txtDesc);
+        TextView tvDesc = (TextView) convertView.findViewById(R.id.txtDesc);
 
         Pub pub = this.pubs.get(position);
 
-        //tvTitle.setText(pub.getName());
-        //tvDesc.setText(pub.getDescription());
+        tvTitle.setText(pub.getName());
+        tvDesc.setText(pub.getDescription());
 
         return convertView;
     }
+
+
 
     public void addPub(Pub pub){
         this.pubs.add((pub));

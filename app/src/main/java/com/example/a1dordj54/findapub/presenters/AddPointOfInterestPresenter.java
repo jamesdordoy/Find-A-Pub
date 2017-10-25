@@ -81,12 +81,12 @@ public class AddPointOfInterestPresenter implements View.OnClickListener{
 
                             if(lat > 0 && lat < 90 && lon > 0 && lon < 90){
 
-                                Pub pub = new Pub(id, name, type, country, region, lat, lon, description);
+                                Pub pub = new Pub(id, name, type, country, region, lon, lat, description);
 
                                 Intent intent = new Intent();
 
                                 Bundle bundle = new Bundle();
-                                bundle.putParcelable(MainActivity.NEW_PUB, pub);
+                                bundle.putParcelable(Pub.NEW_PUB, pub);
 
                                 intent.putExtras(bundle);
                                 this.view.setResult(RESULT_OK, intent);

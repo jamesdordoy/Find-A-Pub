@@ -1,8 +1,9 @@
-package com.example.a1dordj54.findapub.views.activityInterfaces;
+package com.example.a1dordj54.findapub.presenters.activityInterfaces;
 
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.TextView;
+
+import com.example.a1dordj54.findapub.presenters.View;
 
 /**
  * Created by 1dordj54 on 05/10/2017.

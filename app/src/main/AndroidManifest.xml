@@ -25,7 +25,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".views.activities.AddPointOfInterestActivity" android:label="@string/add_poi">
+        <activity android:name=".views.activities.AddPointOfInterestActivity" android:label="@string/add_pub">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".views.activities.MainActivity" />
@@ -36,7 +36,7 @@
                 android:value=".views.activities.MainActivity" />
         </activity>
 
-        <activity android:name=".views.activities.PrefActivity" android:label="@string/add_poi">
+        <activity android:name=".views.activities.PrefActivity" android:label="@string/settings">
 
         </activity>
     </application>

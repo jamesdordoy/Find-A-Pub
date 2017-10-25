@@ -1,75 +1,118 @@
 package com.example.a1dordj54.findapub.views.fragments;
 
-import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ListView;
 
+import com.example.a1dordj54.findapub.OpenStreetMaps.OpenStreetMap;
 import com.example.a1dordj54.findapub.R;
-import com.example.a1dordj54.findapub.views.MapListAdapter;
-import com.example.a1dordj54.findapub.database.DataSource;
+import com.example.a1dordj54.findapub.helpers.MapListAdapter;
 import com.example.a1dordj54.findapub.models.Pub;
 
-public class MapListFragment extends ListFragment implements AdapterView.OnItemClickListener {
+import java.util.ArrayList;
+import java.util.List;
+
+public class MapListFragment extends ListFragment{
+
+    private static final String PUB_LIST_KEY = "pub_list";
+    private ArrayList<Pub> pubs;
 
     private MapListAdapter adapter;
-    private DataSource dataSource;
     private SetMapView mapView;
 
+    public static MapListFragment newInstance(ArrayList<Pub> pubs){
 
-    public interface SetMapView {
+        MapListFragment fragment = new MapListFragment();
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(PUB_LIST_KEY, pubs);
+        fragment.setArguments(bundle);
 
-        void setView(double lat, double lon);
+        return fragment;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        return inflater.inflate(R.layout.list_fragment, container, false);
+        View view = inflater.inflate(R.layout.list_fragment, container, false);
+
+        if(getArguments() != null){
+
+            this.pubs = (ArrayList<Pub>) getArguments().getSerializable(PUB_LIST_KEY);
+        }
+
+
+        this.adapter = new MapListAdapter(getActivity(), pubs);
+
+        setListAdapter(this.adapter);
+
+        return view;
     }
 
-
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
 
         // This makes sure that the container activity has implemented
         // the callback interface. If not, it throws an exception
         try {
-            mapView = (SetMapView) activity;
+            mapView = (SetMapView) getActivity();
         } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString()
-                    + " must implement OnHeadlineSelectedListener");
+            throw new ClassCastException(getActivity().toString()
+                    + " must implement SetMapView");
         }
+    }
+
+    @Override
+    public void onStart(){
+        super.onStart();
     }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        this.dataSource = new DataSource(getActivity());
-        dataSource.open();
 
-        this.adapter = new MapListAdapter(getActivity(), dataSource.getAllPubs());
-        setListAdapter(this.adapter);
-
-        getListView().setOnItemClickListener(this);
+        //getListView().setOnItemClickListener(this);
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        adapter.swapItems(dataSource.getAllPubs());
     }
 
 
     @Override
+    public void onListItemClick(ListView l, View v, int position, long id) {
+        super.onListItemClick(l, v, position, id);
+        Pub pub = (Pub) getListAdapter().getItem(position);
+
+
+
+        mapView.setMapView(pub.getLat(), pub.getLon());
+    }
+
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+        super.onListItemClick(this.getListView(), view, position, id);
+
+
+
+       //Toast.makeText(getActivity(), "working", Toast.LENGTH_SHORT).show();
 
         Pub pub = adapter.getPub(position);
 
-        this.mapView.setView(pub.getLon(), pub.getLat());
+        //Toast.makeText(getActivity(), pub.getName(), Toast.LENGTH_SHORT).show();
+    }
+
+    public void setNewList(ArrayList<Pub> pubs){
+        this.adapter = new MapListAdapter(getActivity(), pubs);
+
+        setListAdapter(this.adapter);
     }
 }

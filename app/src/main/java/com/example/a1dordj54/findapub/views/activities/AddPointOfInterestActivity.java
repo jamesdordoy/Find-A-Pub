@@ -11,7 +11,7 @@ import android.widget.LinearLayout;
 import com.example.a1dordj54.findapub.R;
 import com.example.a1dordj54.findapub.helpers.BaseActivity;
 import com.example.a1dordj54.findapub.presenters.AddPointOfInterestPresenter;
-import com.example.a1dordj54.findapub.views.activityInterfaces.AddPointOfInterestView;
+import com.example.a1dordj54.findapub.presenters.activityInterfaces.AddPointOfInterestView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

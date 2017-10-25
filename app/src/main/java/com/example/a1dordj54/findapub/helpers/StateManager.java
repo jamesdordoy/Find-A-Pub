@@ -1,12 +1,13 @@
 package com.example.a1dordj54.findapub.helpers;
 
 import com.example.a1dordj54.findapub.models.PointofInterest;
+import com.example.a1dordj54.findapub.models.Pub;
 
 import java.util.ArrayList;
 
 public class StateManager {
 
-    private ArrayList<PointofInterest> pointsofInterests = new ArrayList<>();
+    private ArrayList<Pub> pointsofInterests = new ArrayList<>();
 
     private Double lat = 0.00;
     private Double lon = 0.00;
@@ -22,11 +23,11 @@ public class StateManager {
     private StateManager() {}
 
     //Back To Implementation
-    public void addPointOfInterest(PointofInterest poi){
+    public void addPointOfInterest(Pub poi){
         this.pointsofInterests.add(poi);
     }
 
-    public ArrayList<PointofInterest> getPointsofInterests() {
+    public ArrayList<Pub> getPointsofInterests() {
         return pointsofInterests;
     }
 
@@ -35,7 +36,7 @@ public class StateManager {
         return this.pointsofInterests.get(i);
     }
 
-    public void setPointsofInterests(ArrayList<PointofInterest> pointsofInterests) {
+    public void setPointsofInterests(ArrayList<Pub> pointsofInterests) {
         this.pointsofInterests = pointsofInterests;
     }
 

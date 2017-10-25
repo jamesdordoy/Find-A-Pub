@@ -1,9 +1,9 @@
-package com.example.a1dordj54.findapub.models.OpenStreetMaps;
+package com.example.a1dordj54.findapub.OpenStreetMaps;
 
 import android.graphics.Canvas;
 import android.view.MotionEvent;
 
-import com.example.a1dordj54.findapub.models.OpenStreetMaps.interfaces.Mapable;
+import com.example.a1dordj54.findapub.OpenStreetMaps.interfaces.Mapable;
 
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapView;

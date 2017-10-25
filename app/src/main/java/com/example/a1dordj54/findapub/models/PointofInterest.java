@@ -1,11 +1,6 @@
 package com.example.a1dordj54.findapub.models;
 
 
-import android.graphics.drawable.Drawable;
-import android.util.Log;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 import org.osmdroid.api.IGeoPoint;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.overlay.OverlayItem;
@@ -21,11 +16,11 @@ public abstract class PointofInterest extends OverlayItem {
     protected String type;
     protected String country;
     protected String region;
-    protected double lon;
     protected double lat;
+    protected double lon;
     protected String description;
 
-    protected PointofInterest(String id, String name, String type, String country, String region, double lon, double lat, String description) {
+    protected PointofInterest(String id, String name, String type, String country, String region, double lat, double lon, String description) {
 
         super(name, description, new GeoPoint(lat, lon));
         this.id = id;
@@ -33,10 +28,9 @@ public abstract class PointofInterest extends OverlayItem {
         this.type = type;
         this.country = country;
         this.region = region;
-        this.lon = lon;
         this.lat = lat;
+        this.lon = lon;
         this.description = description;
-
     }
 
     @Override

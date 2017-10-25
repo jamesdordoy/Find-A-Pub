@@ -1,6 +1,6 @@
 package com.example.a1dordj54.findapub.presenters;
 
-import com.example.a1dordj54.findapub.views.activityInterfaces.PrefActivityView;
+import com.example.a1dordj54.findapub.presenters.activityInterfaces.PrefActivityView;
 
 public class PrefActivityPresenter implements Presenter {
 

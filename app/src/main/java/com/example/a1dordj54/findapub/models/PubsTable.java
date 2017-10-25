@@ -12,7 +12,7 @@ public class PubsTable {
     public static final String COLUMN_LONGITUDE = "long";
     public static final String COLUMN_DESCRIPTION = "description";
 
-    public static final String[] AllCols = {COLUMN_ID, COLUMN_NAME, COLUMN_TYPE,
+    public static final String[] ALL_COLS = {COLUMN_ID, COLUMN_NAME, COLUMN_TYPE,
             COLUMN_COUNTRY, COLUMN_REGION, COLUMN_LATITUDE, COLUMN_LONGITUDE, COLUMN_DESCRIPTION};
 
     public static final String SQL_CREATE =
@@ -27,6 +27,5 @@ public class PubsTable {
                     COLUMN_DESCRIPTION + " TEXT " +
                     ");";
 
-    public static final String SQL_DELETE = "DROP TABLE " + TABLE_PUBS;
-
+    public static final String SQL_DROP = "DROP TABLE " + TABLE_PUBS;
 }

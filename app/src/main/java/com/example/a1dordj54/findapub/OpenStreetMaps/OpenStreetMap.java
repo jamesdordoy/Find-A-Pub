@@ -1,4 +1,4 @@
-package com.example.a1dordj54.findapub.models.OpenStreetMaps;
+package com.example.a1dordj54.findapub.OpenStreetMaps;
 
 import android.content.Context;
 import android.location.LocationManager;
@@ -6,18 +6,22 @@ import android.util.AttributeSet;
 
 import com.example.a1dordj54.findapub.helpers.StateManager;
 import com.example.a1dordj54.findapub.models.PointofInterest;
+import com.example.a1dordj54.findapub.models.Pub;
+
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.overlay.Overlay;
 import org.osmdroid.views.overlay.OverlayItem;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class OpenStreetMap extends Map {
 
     public static final String OSMAP_ID = "open_street_map";
+    public static final int MAP_ZOOM = 8;
 
     private MapMarkerOverlay mapMarkers;
-    private ArrayList<PointofInterest> pointsOfInterest;
+    private ArrayList<Pub> pubs;
     private MapLocationListener listener;
 
     public OpenStreetMap(Context context, AttributeSet attrs) {
@@ -25,12 +29,11 @@ public class OpenStreetMap extends Map {
         super(context, attrs);
         super.setBuiltInZoomControls(true);
 
-        this.pointsOfInterest = new ArrayList<>();
+        setUpMap(new ArrayList<Pub>());
+    }
 
-        //the overlay
-        this.mapMarkers = new MapMarkerOverlay(super.getContext(), this.pointsOfInterest);
-
-        this.getOverlays().add(mapMarkers);
+    private void setUpMap(ArrayList<Pub> pubs){
+        this.pubs = pubs;
 
         // Set up location manager
         LocationManager locManager = (LocationManager)
@@ -38,15 +41,10 @@ public class OpenStreetMap extends Map {
 
         this.listener = new MapLocationListener(locManager, super.getContext(), this);
 
-        for(int i = 0; i < StateManager.getInstance().getPointsofInterests().size(); i++){
-            this.addMarker(StateManager.getInstance().getPointOfInterest(i), false);
-        }
-    }
+        //the overlay
+        this.mapMarkers = new MapMarkerOverlay(super.getContext(), this.pubs);
 
-    public void retainCurrentPointsOfInterest(){
-        for(int i = 0; i < this.pointsOfInterest.size(); i++){
-            StateManager.getInstance().addPointOfInterest(this.pointsOfInterest.get(i));
-        }
+        this.getOverlays().add(mapMarkers);
     }
 
     @Override
@@ -62,14 +60,24 @@ public class OpenStreetMap extends Map {
     @Override
     public void addTouchController(Overlay items){ super.getOverlays().add(items); }
 
+    public void addMarkers(ArrayList<Pub> pois){
+
+        if(pois != null) {
+
+            this.mapMarkers.addItems(pois);
+
+            super.invalidate();
+            super.getOverlays().clear();
+            super.getOverlays().add(this.mapMarkers);
+        }
+    }
+
     @Override
-    public void addMarker(PointofInterest poi, Boolean toogleMessage){
+    public void addMarker(OverlayItem poi){
 
         if(poi != null) {
 
-            if(this.mapMarkers.addMarker(poi, toogleMessage)){
-
-                this.pointsOfInterest.add(poi);
+            if(this.mapMarkers.addItem(poi)){
 
                 super.getOverlays().add(this.mapMarkers);
                 super.invalidate();
@@ -77,10 +85,17 @@ public class OpenStreetMap extends Map {
         }
     }
 
-
-    public ArrayList<PointofInterest> getPointsOfInterest(){
-        return this.pointsOfInterest;
+    public ArrayList<Pub> getPubs(){
+        return this.pubs;
     }
-    public void setPointsofInterests(ArrayList<PointofInterest> poi){ this.pointsOfInterest = poi; }
+    public void setPubs(ArrayList<Pub> poi){
+
+        this.pubs = poi;
+
+        this.mapMarkers = new MapMarkerOverlay(super.getContext(), this.pubs);
+
+        super.getOverlays().clear();
+        this.getOverlays().add(mapMarkers);
+    }
     public MapLocationListener getListener() { return listener; }
 }

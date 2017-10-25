@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Find a Pub</string>
-    <string name="add_poi">Add a New Pub</string>
+    <string name="add_pub">Add a New Pub</string>
+    <string name="pub_list">List of Pubs</string>
+
     <string name="cloud">Sync Data With Cloud</string>
     <string name="settings">Settings</string>
     <string name="search_title">Search</string>
