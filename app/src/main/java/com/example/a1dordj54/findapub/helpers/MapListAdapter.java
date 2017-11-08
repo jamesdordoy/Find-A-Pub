@@ -1,7 +1,6 @@
 package com.example.a1dordj54.findapub.helpers;
 
 import android.content.Context;
-import android.database.DataSetObserver;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,12 +28,6 @@ public class MapListAdapter extends ArrayAdapter<Pub> implements ListAdapter {
         this.inflater = LayoutInflater.from(context);
     }
 
-    @Override
-    public int getCount() {
-        return super.getCount();
-    }
-
-
     @NonNull
     @Override
     public View getView(int position, View convertView, ViewGroup parent){
@@ -57,64 +50,8 @@ public class MapListAdapter extends ArrayAdapter<Pub> implements ListAdapter {
         return convertView;
     }
 
-
-
-    public void addPub(Pub pub){
-        this.pubs.add((pub));
-    }
-
-    public Pub getPub(int position){
-        return this.pubs.get(position);
-    }
-
-    public int getPubCount(){
-        return this.pubs.size();
-    }
-
-    public void fillPubs(ArrayList<Pub> pubs){
-
-        for (Pub pub : pubs) {
-            this.pubs.add(pub);
-        }
-
-    }
-
-    public void swapItems(ArrayList<Pub> items) {
-
-        this.pubs = items;
-        notifyDataSetChanged();
-    }
-
-    public Pub getPubById(String id){
-        for(Pub pub : pubs){
-            if(pub.getId() == id){
-                return pub;
-            }
-        }
-
-        return null;
-    }
-
     public ArrayList<Pub> getPubs(){
         return this.pubs;
-    }
-
-    public void clearPubs(){
-
-
-        this.notifyDataSetChanged();
-
-        this.pubs.clear();
-    }
-
-    @Override
-    public void registerDataSetObserver(DataSetObserver observer) {
-        super.registerDataSetObserver(observer);
-    }
-
-    @Override
-    public void unregisterDataSetObserver(DataSetObserver observer) {
-        super.unregisterDataSetObserver(observer);
     }
 }
 

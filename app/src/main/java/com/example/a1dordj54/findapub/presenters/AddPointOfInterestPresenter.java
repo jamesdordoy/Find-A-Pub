@@ -9,10 +9,11 @@ import com.example.a1dordj54.findapub.helpers.StateManager;
 import com.example.a1dordj54.findapub.models.Pub;
 import com.example.a1dordj54.findapub.views.activities.AddPointOfInterestActivity;
 import com.example.a1dordj54.findapub.views.activities.MainActivity;
+import com.example.a1dordj54.findapub.views.activityInterfaces.AddPointOfInterestView;
 
 import static android.app.Activity.RESULT_OK;
 
-public class AddPointOfInterestPresenter implements View.OnClickListener{
+public class AddPointOfInterestPresenter implements Presenter, View.OnClickListener{
 
     public static final String NO_NAME_ERROR_MSG = "No Name Has Been Entered, Please Review The Name Text Area";
     public static final String NO_TYPE_ERROR_MSG = "No Type Has Been Entered, Please Review The Type Text Area";
@@ -20,7 +21,7 @@ public class AddPointOfInterestPresenter implements View.OnClickListener{
     public static final String NO_REGION_ERROR_MSG = "No Region Has Been Entered, Please Review The Region Text Area";
     public static final String NO_DESCRIPTION_ERROR_MSG = "No Description Has Been Entered, Please Review The Description Text Area";
 
-    private AddPointOfInterestActivity view;
+    private AddPointOfInterestView view;
 
     public AddPointOfInterestPresenter(AddPointOfInterestActivity view){
         this.view = view;
@@ -69,7 +70,7 @@ public class AddPointOfInterestPresenter implements View.OnClickListener{
             lat = Double.parseDouble(this.view.getLatitude().getText().toString());
             lon = Double.parseDouble(this.view.getLongitude().getText().toString());
         }catch (NumberFormatException e){
-            Toast.makeText(this.view, e.getMessage(), Toast.LENGTH_SHORT).show();
+
         }
 
         ////Validation
@@ -79,36 +80,34 @@ public class AddPointOfInterestPresenter implements View.OnClickListener{
                     if(!region.isEmpty()){
                         if(!description.isEmpty()){
 
-                            if(lat > 0 && lat < 90 && lon > 0 && lon < 90){
+                            if(lat > -90 && lat < 90 && lon > -90 && lon < 90){
 
+
+                                //Lon & Lat backwards because Java dos'nt like to be simple..
                                 Pub pub = new Pub(id, name, type, country, region, lon, lat, description);
 
                                 Intent intent = new Intent();
 
                                 Bundle bundle = new Bundle();
                                 bundle.putParcelable(Pub.NEW_PUB, pub);
+                                bundle.putBoolean("lookup", false);
 
                                 intent.putExtras(bundle);
-                                this.view.setResult(RESULT_OK, intent);
-                                this.view.finish();
-                            }
 
-                        }else{ // No Description
+                                this.view.finishIntent(intent);
+                            }
+                        }else{
                             this.view.displaySnackbar(NO_DESCRIPTION_ERROR_MSG);
                         }
-
-                    }else{ //No Region
+                    }else{
                         this.view.displaySnackbar(NO_REGION_ERROR_MSG);
                     }
-
                 }else{
                     this.view.displaySnackbar(NO_COUNTRY_ERROR_MSG);
                 }
-
             }else{
                 this.view.displaySnackbar(NO_TYPE_ERROR_MSG);
             }
-
         }else{
             this.view.displaySnackbar(NO_NAME_ERROR_MSG);
         }

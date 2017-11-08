@@ -6,8 +6,4 @@ package com.example.a1dordj54.findapub.presenters;
 
 public interface Presenter {
 
-    void onCreate();
-    void onPause();
-    void onResume();
-    void onDestroy();
 }

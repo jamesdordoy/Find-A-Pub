@@ -1,28 +1,15 @@
 package com.example.a1dordj54.findapub.webservices.async;
 
-import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.util.Base64;
-import android.util.Log;
 
-import com.example.a1dordj54.findapub.R;
-import com.example.a1dordj54.findapub.OpenStreetMaps.interfaces.Mapable;
-import com.example.a1dordj54.findapub.models.PointofInterest;
 import com.example.a1dordj54.findapub.models.Pub;
-import com.example.a1dordj54.findapub.presenters.fragmentInterfaces.MapFragmentView;
+import com.example.a1dordj54.findapub.views.fragmentInterfaces.MapFragmentView;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.nio.charset.StandardCharsets;
 
 /**
  * Created by 1dordj54 on 22/10/2017.

@@ -9,28 +9,34 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.a1dordj54.findapub.OpenStreetMaps.OpenStreetMap;
 import com.example.a1dordj54.findapub.R;
+import com.example.a1dordj54.findapub.helpers.BaseActivity;
 import com.example.a1dordj54.findapub.helpers.MapListAdapter;
+import com.example.a1dordj54.findapub.helpers.StateManager;
 import com.example.a1dordj54.findapub.models.Pub;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class MapListFragment extends ListFragment{
+
+public class MapListFragment extends ListFragment {
 
     private static final String PUB_LIST_KEY = "pub_list";
-    private ArrayList<Pub> pubs;
 
-    private MapListAdapter adapter;
-    private SetMapView mapView;
+    private SetMapView callback;
+
+    public interface SetMapView {
+
+        void locationSelectedCallback(int position);
+    }
 
     public static MapListFragment newInstance(ArrayList<Pub> pubs){
 
         MapListFragment fragment = new MapListFragment();
         Bundle bundle = new Bundle();
-        bundle.putSerializable(PUB_LIST_KEY, pubs);
+        bundle.putParcelableArrayList(PUB_LIST_KEY, pubs);
         fragment.setArguments(bundle);
 
         return fragment;
@@ -41,15 +47,15 @@ public class MapListFragment extends ListFragment{
 
         View view = inflater.inflate(R.layout.list_fragment, container, false);
 
-        if(getArguments() != null){
+        MapListAdapter adapter;
 
-            this.pubs = (ArrayList<Pub>) getArguments().getSerializable(PUB_LIST_KEY);
+        synchronized (StateManager.getInstance()) {
+            adapter = new MapListAdapter(getActivity(), StateManager.getInstance().getPointsofInterests());
         }
 
+        setListAdapter(adapter);
 
-        this.adapter = new MapListAdapter(getActivity(), pubs);
-
-        setListAdapter(this.adapter);
+        //setRetainInstance(true);
 
         return view;
     }
@@ -58,10 +64,9 @@ public class MapListFragment extends ListFragment{
     public void onAttach(Context context) {
         super.onAttach(context);
 
-        // This makes sure that the container activity has implemented
-        // the callback interface. If not, it throws an exception
         try {
-            mapView = (SetMapView) getActivity();
+            if(this.callback != null)
+                this.callback = (SetMapView) ((BaseActivity) getActivity()).getPresenter();
         } catch (ClassCastException e) {
             throw new ClassCastException(getActivity().toString()
                     + " must implement SetMapView");
@@ -78,7 +83,6 @@ public class MapListFragment extends ListFragment{
         super.onActivityCreated(savedInstanceState);
 
 
-        //getListView().setOnItemClickListener(this);
     }
 
     @Override
@@ -90,29 +94,11 @@ public class MapListFragment extends ListFragment{
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
-        Pub pub = (Pub) getListAdapter().getItem(position);
 
-
-
-        mapView.setMapView(pub.getLat(), pub.getLon());
+        callback.locationSelectedCallback(position);
     }
 
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-        super.onListItemClick(this.getListView(), view, position, id);
-
-
-
-       //Toast.makeText(getActivity(), "working", Toast.LENGTH_SHORT).show();
-
-        Pub pub = adapter.getPub(position);
-
-        //Toast.makeText(getActivity(), pub.getName(), Toast.LENGTH_SHORT).show();
-    }
-
-    public void setNewList(ArrayList<Pub> pubs){
-        this.adapter = new MapListAdapter(getActivity(), pubs);
-
-        setListAdapter(this.adapter);
+    public Pub getListItemByPosition(int i){
+        return (Pub) this.getListAdapter().getItem(i);
     }
 }

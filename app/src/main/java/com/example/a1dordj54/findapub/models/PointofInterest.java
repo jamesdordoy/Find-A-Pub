@@ -33,8 +33,7 @@ public abstract class PointofInterest extends OverlayItem {
         this.description = description;
     }
 
-    @Override
-    public IGeoPoint getPoint() {
+    public GeoPoint getPoint() {
         return new GeoPoint(this.lat, this.lon);
     }
 

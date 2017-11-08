@@ -27,6 +27,29 @@ public class StateManager {
         this.pointsofInterests.add(poi);
     }
 
+    public void addPointOfInterests(ArrayList<Pub> pointsofInterests) {
+
+        this.pointsofInterests.addAll(pointsofInterests);
+    }
+
+    public void removePointOfInterest(Pub poi){
+        for (Pub pub : this.pointsofInterests ) {
+            if(pub.getId().equals(poi.getId())){
+                this.pointsofInterests.remove(poi);
+            }
+        }
+    }
+
+    public Boolean checkPointOfInterestExists(Pub poi){
+        for (Pub pub : this.pointsofInterests ) {
+            if(pub.getName().equals(poi.getName()) && poi.getLat() == pub.getLat() && poi.getLon() == pub.getLon()){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public ArrayList<Pub> getPointsofInterests() {
         return pointsofInterests;
     }

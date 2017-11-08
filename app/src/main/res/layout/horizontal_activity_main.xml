@@ -11,28 +11,46 @@
     android:weightSum="1.0"
     android:descendantFocusability="blocksDescendants">
 
-    <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_height="fill_parent"
-        android:layout_width="fill_parent"
-        android:orientation="horizontal">
-
-        <GridLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:id="@+id/listFragment"
-            android:name="fragments.MapFragment"
-            android:layout_weight="0.3"/>
-
-        <GridLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:id="@+id/mapFragment"
-            android:name="fragments.MapFragment"
-            android:layout_weight="0.7"/>
 
 
-    </LinearLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            android:layout_height="match_parent">
+
+            <android.support.v7.widget.Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                app:titleTextColor="@color/textColourSecondary"
+                app:subtitleTextColor="@color/textColourSecondary"
+                android:id="@+id/my_toolbar"/>
+
+            <LinearLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_height="fill_parent"
+                android:layout_width="fill_parent"
+                android:orientation="horizontal"
+                android:layout_below="@+id/my_toolbar">
+
+            <GridLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:id="@+id/list_fragment"
+                android:name="fragments.MapListFragment"
+                android:layout_weight="0.3"/>
+
+            <GridLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:id="@+id/map_fragment"
+                android:name="fragments.MapFragment"
+                android:layout_weight="0.7"/>
+
+            </LinearLayout>
+
+        </RelativeLayout>
 
 
 </android.support.design.widget.CoordinatorLayout>

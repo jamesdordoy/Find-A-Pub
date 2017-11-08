@@ -1,15 +1,9 @@
 package com.example.a1dordj54.findapub.webservices.async;
 
-import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 
-import com.example.a1dordj54.findapub.R;
 import com.example.a1dordj54.findapub.models.Pub;
-import com.example.a1dordj54.findapub.presenters.fragmentInterfaces.MapFragmentView;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.example.a1dordj54.findapub.views.fragmentInterfaces.MapFragmentView;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -61,64 +55,9 @@ public class AsyncGetPubsFromWebService extends AsyncTask<String,Void,String> {
 
         if (result != null) {
 
-            JSONArray jArray = null;
+            ArrayList<Pub> pois = Pub.fromJSONToArray(result, fragment);
 
-            try {
-                jArray = new JSONArray(result);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
-            ArrayList<Pub> pois = new ArrayList<>();
-
-            Pub poi;
-
-            for (int i = 0; i < jArray.length(); i++) {
-
-                JSONObject jObject = null;
-
-                try {
-                    jObject = jArray.getJSONObject(i);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-                if (jObject != null) {
-
-                    double rating;
-
-                    try {
-
-                        if (!jObject.isNull("rating")) {
-                            rating = jObject.getDouble("rating");
-
-                            poi = new Pub(jObject.getString("id"), jObject.getString("name"),
-                                    jObject.getString("type"), jObject.getString("country"),
-                                    jObject.getString("region"), jObject.getDouble("lat"),
-                                    jObject.getDouble("lon"), jObject.getString("description"),
-                                    rating);
-                        }else{
-                            poi = new Pub(jObject.getString("id"), jObject.getString("name"),
-                                    jObject.getString("type"), jObject.getString("country"),
-                                    jObject.getString("region"), jObject.getDouble("lat"),
-                                    jObject.getDouble("lon"), jObject.getString("description"),
-                                    0);
-                        }
-
-                        Drawable newMarker = (this.fragment.getLayout()).getResources().getDrawable(R.drawable.ic_web_marker);
-                        poi.setMarker(newMarker);
-
-
-
-                        pois.add(poi);
-
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-
-            this.fragment.addMarkers(pois);
+            this.fragment.getMap().addMarkers(pois);
 
             this.fragment.displaySnackbar("Add Pubs From Web");
         }

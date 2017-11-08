@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/add_poi_activity">
+
+        <include layout="@layout/pub_toolbar" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="20dp">
+
+            <TextView
+                android:text="@string/pub_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/lbl_name"
+                />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/pub_name"
+                android:id="@+id/pub_name"
+                android:inputType="text"/>
+
+            <TextView
+                android:text="@string/pub_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/lbl_type" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:id="@+id/pub_type"
+                android:hint="@string/pub_type"
+                android:inputType="text"/>
+
+            <TextView
+                android:text="@string/pub_country"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/lbl_country" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:id="@+id/pub_country"
+                android:hint="@string/pub_country"
+                android:inputType="text"/>
+
+            <TextView
+                android:text="@string/pub_region"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/lbl_region" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:id="@+id/pub_region"
+                android:hint="@string/pub_region"
+                android:inputType="text"/>
+
+            <TextView
+                android:text="@string/pub_lat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/lbl_lat"
+                />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:id="@+id/pub_lat"
+                android:hint="@string/pub_lat"
+                android:inputType="none"/>
+
+            <TextView
+                android:text="@string/pub_lon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/lbl_lon" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:id="@+id/pub_lon"
+                android:hint="@string/pub_lon"
+                android:inputType="none"/>
+
+            <TextView
+                android:text="@string/pub_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/lbl_description" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:id="@+id/pub_description"
+                android:hint="@string/pub_description"
+                android:inputType="textMultiLine"/>
+
+            <Button
+                android:text="@string/add_pub"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/submit"
+                android:background="@color/colorPrimary"
+                android:textColor="@color/textColourSecondary"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

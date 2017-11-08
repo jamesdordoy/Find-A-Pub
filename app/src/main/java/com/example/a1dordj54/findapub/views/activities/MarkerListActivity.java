@@ -2,41 +2,54 @@ package com.example.a1dordj54.findapub.views.activities;
 
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.example.a1dordj54.findapub.R;
 import com.example.a1dordj54.findapub.helpers.BaseActivity;
 import com.example.a1dordj54.findapub.helpers.StateManager;
-import com.example.a1dordj54.findapub.models.Pub;
 import com.example.a1dordj54.findapub.presenters.MarkerListPresenter;
-import com.example.a1dordj54.findapub.presenters.activityInterfaces.MarkerListView;
-import com.example.a1dordj54.findapub.views.fragments.MapFragment;
+import com.example.a1dordj54.findapub.presenters.Presenter;
+import com.example.a1dordj54.findapub.views.activityInterfaces.MarkerListView;
 import com.example.a1dordj54.findapub.views.fragments.MapListFragment;
-import com.example.a1dordj54.findapub.views.fragments.SetMapView;
 
-import java.util.ArrayList;
+import butterknife.BindView;
 
 
-public class MarkerListActivity extends BaseActivity implements MarkerListView, SetMapView {
+public class MarkerListActivity extends BaseActivity implements MarkerListView{
 
+    //UI
+    @BindView(R.id.marker_activity)
+    LinearLayout layout;
+
+    @BindView(R.id.my_toolbar)
+    Toolbar toolbar;
+
+    //MVP
     private MarkerListPresenter presenter;
+
+    //Fragments
     private MapListFragment fragment;
 
     @Override
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
 
+        //MVP
         this.presenter = new MarkerListPresenter(this);
 
-        this.setSupportActionBar((Toolbar) findViewById(R.id.my_toolbar));
 
-        if(StateManager.getInstance().getPointsofInterests().size() > 0){
+        //UI
+        this.setSupportActionBar(this.toolbar);
 
-            this.fragment = MapListFragment.newInstance(StateManager.getInstance().getPointsofInterests());
-        }else{
-            this.fragment = MapListFragment.newInstance(new ArrayList<Pub>());
-        }
+        this.fragment = MapListFragment.newInstance(StateManager.getInstance().getPointsofInterests());
 
         this.getSupportFragmentManager().beginTransaction().add(R.id.fragment, fragment).commit();
+    }
+
+    @Override
+    public Presenter getPresenter() {
+        return this.presenter;
     }
 
     @Override
@@ -45,12 +58,12 @@ public class MarkerListActivity extends BaseActivity implements MarkerListView, 
     }
 
     @Override
-    public void setMapView(double lat, double lon) {
-
+    public ViewGroup getLayout() {
+        return this.layout;
     }
 
     @Override
-    public void displaySnackbar(String txt) {
-
+    public MapListFragment getFragment() {
+        return fragment;
     }
 }

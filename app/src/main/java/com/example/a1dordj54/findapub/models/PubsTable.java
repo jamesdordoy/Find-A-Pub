@@ -2,7 +2,7 @@ package com.example.a1dordj54.findapub.models;
 
 public class PubsTable {
 
-    public static final String TABLE_PUBS = "pubs";
+    public static final String TABLE_NAME = "pubs";
     public static final String COLUMN_ID = "pubId";
     public static final String COLUMN_NAME = "name";
     public static final String COLUMN_TYPE = "type";
@@ -16,7 +16,7 @@ public class PubsTable {
             COLUMN_COUNTRY, COLUMN_REGION, COLUMN_LATITUDE, COLUMN_LONGITUDE, COLUMN_DESCRIPTION};
 
     public static final String SQL_CREATE =
-            "CREATE TABLE " + TABLE_PUBS + "(" +
+            "CREATE TABLE " + TABLE_NAME + "(" +
                     COLUMN_ID + " TEXT PRIMARY KEY, " +
                     COLUMN_NAME + " TEXT, " +
                     COLUMN_TYPE + " TEXT, " +
@@ -27,5 +27,5 @@ public class PubsTable {
                     COLUMN_DESCRIPTION + " TEXT " +
                     ");";
 
-    public static final String SQL_DROP = "DROP TABLE " + TABLE_PUBS;
+    public static final String SQL_DROP = "DROP TABLE " + TABLE_NAME;
 }

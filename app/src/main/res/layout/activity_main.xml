@@ -1,30 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     tools:context=".views.activities.MainActivity"
     android:id="@+id/home_activity">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/my_toolbar"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        android:elevation="4dp"
-        android:theme="@style/Theme.AppCompat.DayNight"
-        app:popupTheme="@style/Theme.AppCompat.DayNight"
-        android:titleTextColor="@color/textColourSeconday"/>
+        android:orientation="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_height="match_parent">
 
+        <android.support.v7.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            app:titleTextColor="@color/textColourSecondary"
+            app:subtitleTextColor="@color/textColourSecondary"
+            android:id="@+id/my_toolbar"/>
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/mapFragment"
-        android:name="fragments.MapFragment" />
+        <FrameLayout
+            android:id="@+id/map_fragment"
+            android:name="fragments.MapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/my_toolbar"/>
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:id="@+id/list_fragment"
+            android:name="fragments.MapListFragment"/>
+
+    </RelativeLayout>
+
 
 
 </android.support.design.widget.CoordinatorLayout>

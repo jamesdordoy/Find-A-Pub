@@ -14,10 +14,10 @@ public abstract class Map extends MapView {
 
         super(context, attrs);
         super.setBuiltInZoomControls(true);
+        super.setMultiTouchControls(true);
     }
 
     public abstract void addMarker(OverlayItem poi);
     public abstract void setView(GeoPoint geopoint);
     public abstract void setZoom(int zoom);
-    public abstract void addTouchController(Overlay items);
 }

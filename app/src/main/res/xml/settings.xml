@@ -1,11 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <CheckBoxPreference android:key="autodownload" android:defaultValue="true" android:title="Auto-download"
+    <CheckBoxPreference
+        android:key="auto_download"
+        android:defaultValue="true"
+        android:title="Auto-download"
         android:summary="Auto-download map markers from the internet" />
 
 
-    <CheckBoxPreference android:key="add_to_web_server" android:defaultValue="false" android:title="Sync New Pubs With Cloud"
+    <CheckBoxPreference
+        android:key="add_to_web_server"
+        android:defaultValue="false"
+        android:title="Sync New Pubs With Cloud"
         android:summary="Adds Pubs that you mark to the Cloud for others to view" />
+
+    <EditTextPreference
+        android:key="default zoom"
+        android:defaultValue="8"
+        android:title="Default Zoom for Map"
+        android:summary="The Map Will Open With The Zoom Specified, Lower Numbers Will Produce a Closer view" />
 
 </PreferenceScreen>

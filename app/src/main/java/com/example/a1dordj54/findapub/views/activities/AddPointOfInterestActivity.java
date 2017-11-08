@@ -1,5 +1,6 @@
 package com.example.a1dordj54.findapub.views.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.Toolbar;
@@ -11,7 +12,8 @@ import android.widget.LinearLayout;
 import com.example.a1dordj54.findapub.R;
 import com.example.a1dordj54.findapub.helpers.BaseActivity;
 import com.example.a1dordj54.findapub.presenters.AddPointOfInterestPresenter;
-import com.example.a1dordj54.findapub.presenters.activityInterfaces.AddPointOfInterestView;
+import com.example.a1dordj54.findapub.presenters.Presenter;
+import com.example.a1dordj54.findapub.views.activityInterfaces.AddPointOfInterestView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -45,6 +47,9 @@ public class AddPointOfInterestActivity extends BaseActivity implements AddPoint
     @BindView(R.id.submit)
     Button submit;
 
+    @BindView(R.id.my_toolbar)
+    Toolbar toolbar;
+
     //MVP
     private AddPointOfInterestPresenter presenter;
 
@@ -59,9 +64,7 @@ public class AddPointOfInterestActivity extends BaseActivity implements AddPoint
 
         this.presenter = new AddPointOfInterestPresenter(this);
 
-        //ToolBar
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
-        this.setSupportActionBar(myToolbar);
+        this.setSupportActionBar(toolbar);
         this.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         this.getSupportActionBar().setDisplayShowHomeEnabled(true);
 
@@ -81,6 +84,11 @@ public class AddPointOfInterestActivity extends BaseActivity implements AddPoint
     }
 
     @Override
+    public Presenter getPresenter() {
+        return this.presenter;
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
 
@@ -92,7 +100,13 @@ public class AddPointOfInterestActivity extends BaseActivity implements AddPoint
 
     @Override
     protected int getLayoutResourceId() {
-        return R.layout.activity_add_point_of_interest;
+        return R.layout.point_of_interest_form;
+    }
+
+    @Override
+    public void finishIntent(Intent intent) {
+        setResult(RESULT_OK, intent);
+        finish();
     }
 
     @Override

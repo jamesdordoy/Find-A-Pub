@@ -7,5 +7,27 @@
     <string name="settings">Settings</string>
     <string name="search_title">Search</string>
     <string name="search_hint">Search</string>
-    <string name="google_app_id">your app id</string>
+
+
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="review">Review</string>
+
+    <string name="pub_name">Pub Name: </string>
+    <string name="pub_type">Pub Type: </string>
+    <string name="pub_region">Pub Region: </string>
+    <string name="pub_country">Pub Country: </string>
+    <string name="pub_lat">Pub Latitude: </string>
+    <string name="pub_lon">Pub Longitude: </string>
+    <string name="pub_description">Pub Description: </string>
+
+    <string name="pub_update">Update Pub</string>
+
+    <string name="pub_name_template">Pub Name: %1$s</string>
+    <string name="pub_description_template">Pub Description: %1$s</string>
+    <string name="pub_rating_template">Pub Rating: %1$s</string>
+
+    <string name="pub_rating">Pub Rating: </string>
+
+
 </resources>
